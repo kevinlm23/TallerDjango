@@ -22,6 +22,25 @@ class CrearPersona(CreateView):
     def get_success_url(self):
         return reverse("lista_personas")
 
+class CrearEstudio(CreateView):
+    model = Estudio
+    form_class = EstudioForm
+    template_name = "crear_persona.html"
+
+    def get_success_url(self):
+        return reverse("lista_personas")
+
+class CrearCasoViolencia(CreateView):
+    model = CasoViolencia
+    form_class = CasoViolenciaForm
+    template_name = "crear_caso.html"
+
+    def get_success_url(self):
+        return reverse("lista_personas")
+
+
+#### LISTADO
+
 class ListaPersonas(ListView):
     model = Persona
     template_name = "lista_personas.html"
@@ -87,3 +106,32 @@ class EliminarRegistro(DeleteView):
 
 ######### DETALLE
 
+class DetallePersona(DetailView):
+    model = Persona
+    template_name = "detalle_persona.html"
+    estado="0"
+
+    def get_context_data(self, **kwargs):
+        context = super(DetallePersona, self).get_context_data(**kwargs)
+        context['estado'] = self.estado
+        return context
+
+class DetalleViolencia(DetailView):
+    model = CasoViolencia
+    template_name = "detalle_persona.html"
+    estado = "1"
+
+    def get_context_data(self, **kwargs):
+        context = super(DetalleViolencia, self).get_context_data(**kwargs)
+        context['estado'] = self.estado
+        return context
+
+class DetalleEstudio(DetailView):
+    model = Estudio
+    template_name = "detalle_persona.html"
+    estado = "2"
+
+    def get_context_data(self, **kwargs):
+        context = super(DetalleEstudio, self).get_context_data(**kwargs)
+        context['estado'] = self.estado
+        return context

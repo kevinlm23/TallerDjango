@@ -14,8 +14,7 @@ class Persona(models.Model):
    sexo = models.CharField(max_length=1, choices=GENEROS_CHOICES, verbose_name='Sexo',null=False, blank=False )
    telefono = models.IntegerField(verbose_name='Telefono', null=True, blank=True)
    creado_por = models.ForeignKey(User, null=False, blank=False, verbose_name='Creado_Por')
-   fecha_creacion = models.DateTimeField(verbose_name='Fecha_Creacion', null=False, blank=False, default=datetime.datetime.now()
-)
+   fecha_creacion = models.DateTimeField(verbose_name='Fecha_Creacion', null=False, blank=False, default=datetime.datetime.now())
 
    class Meta:
        verbose_name = 'Persona'
@@ -35,13 +34,18 @@ class Persona(models.Model):
        view = "eliminar_registro"
        return reverse(view, kwargs={"pk": self.id})
 
+   def get_hit_url(self):
+       view = "detalle_persona"
+       return reverse(view, kwargs={"pk": self.id})
+
 class Estudio(models.Model):
    nombre = models.CharField(max_length=100, verbose_name='Nombre',null=False, blank=False)
    categoria = models.CharField(max_length=20, verbose_name='Categoria', null=False, blank=False)
    persona = models.ForeignKey(Persona, verbose_name='Persona', null=False, blank=False)
    finalizado = models.BooleanField(default=False, verbose_name='Finalizado', null=False, blank=False)
    creado_por = models.ForeignKey(User, null=False, blank=False, verbose_name='Creado_Por')
-   fecha_creacion = models.DateTimeField(verbose_name='Fecha_Creacion', null=False, blank=False)
+   fecha_creacion = models.DateTimeField(verbose_name='Fecha_Creacion', null=False, blank=False,
+                                         default=datetime.datetime.now())
 
    class Meta:
        verbose_name = 'Estudio'
@@ -56,10 +60,11 @@ class Estudio(models.Model):
 class CasoViolencia(models.Model):
    descripcion = models.TextField(max_length=200, verbose_name='Descripcion', null=False, blank=False,)
    persona = models.OneToOneField(Persona, verbose_name='Persona', null=False, blank=False,)
-   fecha = models.DateField(verbose_name='Fecha', null=False, blank=False,)
-   nombre_agresor = models.CharField(max_length=30, verbose_name='Nombre_Agresor', null=True, blank=True,)
+   fecha = models.DateField(verbose_name='Fecha', null=False, blank=False, help_text="AA-MM-DD")
+   nombre_agresor = models.CharField(max_length=30, verbose_name='Nombre Agresor', null=True, blank=True,)
    creado_por = models.ForeignKey(User, null=False, blank=False, verbose_name='Creado_Por')
-   fecha_creacion = models.DateTimeField(verbose_name='Fecha_Creacion', null=False, blank=False)
+   fecha_creacion = models.DateTimeField(verbose_name='Fecha_Creacion', null=False, blank=False,
+                                         default=datetime.datetime.now())
 
    class Meta:
        verbose_name = 'Caso_Violencia'

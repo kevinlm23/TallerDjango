@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Persona</title>
+</head>
+<body>
+    {% include 'nav_bar.html' %}
+    <div class="container">
+        <h4>Registro {{object.pk}}</h4>
+        <hr/>
+        {% if estado == "0" %}
+            <h5 class="lead">Nombre: {{object.nombre}}</h5>
+            <h5 class="lead">Email: {{object.email}}</h5>
+            <h5 class="lead">Sexo: {{object.sexo}}</h5>
+            <h5 class="lead">Telefono: {{object.telefono}}</h5>
+            <a class="lead" href="{% url 'detalle_caso' object.pk %} ">Ver caso de violencia</a><br/>
+            <a class="lead" href="{% url 'detalle_estudio' object.pk %} ">Ver estudio</a>
+        {% endif %}
+        {% if estado == "1" %}
+                <h5 class="lead">Agresor: {{object.nombre_agresor}}</h5>
+                <h5 class="lead">Descripción: {{object.descripcion}}</h5>
+        {% endif %}
+        {% if estado == "2" %}
+                <h5 class="lead">Nombre: {{object.nombre}}</h5>
+                <h5 class="lead">Descripción: {{object.categoria}}</h5>
+                <h5 class="lead">Finalizado: {{object.finalizado}}</h5>
+        {% endif %}
+        <hr/>
+        <a class="lead" href="{% url 'crear_estudio' %}">Añadir un estudio</a>
+        <br/>
+        <a class="lead" href="{% url 'crear_caso' %}">Añadir un caso de violencia</a>
+    </div>
+
+</body>
+</html>
+
+
+
