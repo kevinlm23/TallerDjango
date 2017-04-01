@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static  %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+
+    <title>Qubilo Academia</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <style type="text/css">
+    .imagenes {
+        float: right;
+    }
+    .imagenes img{
+        margin: -200px 0 0 20px;
+    }
+
+    </style>
+  </head>
+
+  <body>
+
+    {% include 'nav_bar.html' %}
+
+
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Mujer Víctima</h1>
+        <p>Aplicación creada en el taller de Django - Qubilo Academia</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="#" role="button">Ver Listado de Registros &raquo;</a>
+        </p>
+        <p class="imagenes">
+        <img src="{% static 'img/mujer.png' %}" width="200" height="200"/>
+        </p>
+      </div>
+
+    </div>
+  </body>
+</html>
