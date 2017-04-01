@@ -8,5 +8,4 @@ class PersonaForm(forms.ModelForm):
                   "email",
                   "sexo",
                   "telefono",
-                  "creado_por",
-                  "fecha_creacion"]
+                  "creado_por"]

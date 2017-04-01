@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Registro</title>
+</head>
+<body>
+    {% include 'nav_bar.html' %}
+    <div class="container">
+        <form method = "POST" onsubmit="return CargarMensaje();">
+        {% csrf_token %}
+            <h4> Esta seguro que desea eliminar el registro "{{object.nombre}}" ? </h4>
+            <hr/>
+            <input class="lead" type = "submit" value="Confirmar"/>
+            <a class="lead" href="{% url 'home' %}">Cancelar</a>
+        </form>
+    </div>
+
+</body>
+</html>
+
+<script type="text/javascript" >
+    function CargarMensaje(){
+        alert("Se ha eliminado el registro correctamente");
+    }
+</script>

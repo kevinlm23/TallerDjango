@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar Registro</title>
+</head>
+<body>
+    {% include 'nav_bar.html' %}
+    <form method="post" onsubmit="return CargarMensaje();">
+        {% csrf_token %}
+    <div class="container">
+        <h4> Actualizar un Registro </h4>
+        <hr/>
+        <text >{{form.as_p}}</text>
+        <br/>
+        <hr/>
+        <input class="lead" type = "submit" value="Actualizar"/>
+        <a class="lead" href="{% url 'home' %}">Volver</a>
+    </div>
+    </form>
+</body>
+</html>
+
+<script type="text/javascript" >
+    function CargarMensaje(){
+        alert("Se ha actualizado el registro correctamente");
+    }
+</script>

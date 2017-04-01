@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{page_title}}</title>
+</head>
+<body>
+    {% include 'nav_bar.html' %}
+    <div class="container">
+        <h4>{{ sub_title }}</h4>
+        <HR/>
+        <ul>
+            {% for object in object_list %}
+                {% if estado == "0" %}
+                <h5> <li> <a href="{{ object.get_absolute_url }}">{{object|upper}} </a>  </li></h5>
+                {% endif %}
+                {% if estado == "1" %}
+                    <h5> <li> <a href="{{ object.get_absolute_url }}">{{object|upper}} </a>  </li></h5>
+                {% endif %}
+                {% if estado == "2" %}
+                    <h5> <li> <a href="{{ object.get_success_url }}">{{object|upper}} </a>  </li></h5>
+                {% endif %}
+            {% empty %}
+                <li>No hay registros en la base de datos</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
+
+

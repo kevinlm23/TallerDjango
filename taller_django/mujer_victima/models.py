@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.db import models
+import datetime
 
 # Create your models here.
 
@@ -12,7 +14,8 @@ class Persona(models.Model):
    sexo = models.CharField(max_length=1, choices=GENEROS_CHOICES, verbose_name='Sexo',null=False, blank=False )
    telefono = models.IntegerField(verbose_name='Telefono', null=True, blank=True)
    creado_por = models.ForeignKey(User, null=False, blank=False, verbose_name='Creado_Por')
-   fecha_creacion = models.DateTimeField(verbose_name='Fecha_Creacion', null=False, blank=False)
+   fecha_creacion = models.DateTimeField(verbose_name='Fecha_Creacion', null=False, blank=False, default=datetime.datetime.now()
+)
 
    class Meta:
        verbose_name = 'Persona'
@@ -23,6 +26,14 @@ class Persona(models.Model):
 
    def save(self, *args, **kwargs):
        return super(Persona, self).save(*args, **kwargs)
+
+   def get_absolute_url(self):
+       view = "actualizar_persona"
+       return reverse(view, kwargs={"pk": self.id})
+
+   def get_success_url(self):
+       view = "eliminar_registro"
+       return reverse(view, kwargs={"pk": self.id})
 
 class Estudio(models.Model):
    nombre = models.CharField(max_length=100, verbose_name='Nombre',null=False, blank=False)
